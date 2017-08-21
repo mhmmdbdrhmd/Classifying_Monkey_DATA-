@@ -75,3 +75,6 @@ for i = 1 : size (different_sessions,2)  % i : different sessions
    
     
 end
+
+save('D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_Using_W_equal_to_1000\Feature.mat','Feature');
+save('D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_Using_W_equal_to_1000\Output.mat','Output');
