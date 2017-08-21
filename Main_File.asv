@@ -1,6 +1,0 @@
-clc; clear all; close all;
-
-ParentFileSection1="D:/DATA\Monkey/The_Other_Monkey_From_Junmo/Extracted_Spikes_LFPs_SFCs_STAs/Monkey_PG/";
-ParentFileSection2="/M1_PG_Manual_Extracted_Spikes_LFP_unit_num_1.mat";
-
-different_sessions={'20170315-1', '20170315-2','20170316-1','', };
