@@ -7,7 +7,7 @@ ParentFileSection2="/Spikes_LFPs_PAC_SFC_STA/M1_PG_Manual_Extracted_Spikes_LFP_u
 different_sessions={"20170315-1", "20170315-2","20170316-1","20170316-2","20170316-3","20170317-1","20170317-2","20170317-3","20170328" };
 
 %HP for PSD 
-Window_Size=200; %Sample
+Window_Size=1000; %Sample
 nw=3.5; %Should check later
 f=1:0.5:200; %Frequencies for the PSD
 fs=1000; %Sampling rate
@@ -16,7 +16,7 @@ Counter = 1;
 TS=[];%Temproray Signal
 Feature=[];
 Output=[];
-diff = 5;
+diff = 50;
 ttrial=1;
 
 for i = 1 : size (different_sessions,2)  % i : different sessions
@@ -82,6 +82,6 @@ for i = 1 : size (different_sessions,2)  % i : different sessions
     
 end
 
-save(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_W',int2str(Window_Size), '_OL', int2str(diff),'_Postreward' ,'\Feature.mat'],'Feature');
-save(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_Using_W',int2str(Window_Size), '_OL', int2str(diff),'_Postreward' ,'\Output.mat'],'Output');
-save(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_Using_W',int2str(Window_Size), '_OL', int2str(diff),'_Postreward' ,'\st.mat'],'st');
+save(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_W',int2str(Window_Size), '_OL',  ,'\Feature.mat','Feature']);
+save('D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_Using_W_equal_to_1000\Output.mat','Output');
+save('D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_Using_W_equal_to_1000\st.mat','st');
