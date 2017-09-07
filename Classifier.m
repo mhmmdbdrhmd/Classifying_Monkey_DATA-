@@ -6,7 +6,7 @@ load D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_Using_
 
 data= [Feature,Output];
 
-clear Feature Feature2 Feature3 Feature4 Output Output2 Output3 Output4
+clear Feature Output
 
 totaltrial=max(st(:,2)); trial=1:totaltrial; 
 partn = cvpartition(trial,'k',4);
