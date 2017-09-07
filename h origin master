@@ -1,0 +1,29 @@
+[33mcommit bcad64713d3087a625933d47c02229c4f771ba3e[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Mohammad Badri Ahmadi <mhmmdbdrhmd@gmail.com>
+Date:   Tue Sep 5 11:17:16 2017 -0500
+
+    it took a lot, so I used a diff variable. instead of shifting one time point, we would shift n=diff time points for calculating the psd. here I chose diff = 5, no specific reason, maybe change it later.
+
+[33mcommit b188dcfa7af107927a0000430a3683d1d9bc4828[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Mohammad Badri Ahmadi <mhmmdbdrhmd@gmail.com>
+Date:   Mon Aug 21 16:29:05 2017 -0500
+
+    save function added at the end
+
+[33mcommit 033a3847878b15dab96ffbe37572ff007c567589[m
+Author: Mohammad Badri Ahmadi <mhmmdbdrhmd@gmail.com>
+Date:   Mon Aug 21 11:55:02 2017 -0500
+
+     Extractin PSD for WHOLE data, using 1000 moving data sample for all the sessions
+
+[33mcommit 6ef8ab3d76b564e1b8e41dd3e14b7f87087fe619[m
+Author: Mohammad Badri Ahmadi <mhmmdbdrhmd@gmail.com>
+Date:   Mon Aug 21 10:33:18 2017 -0500
+
+    Add Loading Files from the data directory for LFP data, take note that all the units have the same LFP, so reading from one unit is enough
+
+[33mcommit 61e33c6e4394700e401fa3069d9d7371a50b61e1[m
+Author: Mohammad Badri Ahmadi <mhmmdbdrhmd@gmail.com>
+Date:   Mon Aug 21 10:17:55 2017 -0500
+
+    Creat Main File to start Coding

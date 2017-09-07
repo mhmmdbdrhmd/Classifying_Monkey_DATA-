@@ -16,8 +16,9 @@ Counter = 1;
 TS=[];%Temproray Signal
 Feature=[];
 Output=[];
-diff = 5;
- 
+diff = 50;
+ttrial=1;
+
 for i = 1 : size (different_sessions,2)  % i : different sessions
    load (strcat(ParentFileSection1, different_sessions{i},ParentFileSection2));
    
@@ -27,10 +28,11 @@ for i = 1 : size (different_sessions,2)  % i : different sessions
        TS=TrialLFP_R0P0_whole(j).LFP;
        for k = 1 : diff : size(TS,2) - (Window_Size -1) %k : Different time points
            Feature(Counter,:)=pmtm(TS(k : k + (Window_Size -1)), nw, f, fs);
-           Output(Counter,1)=0;
+           Output(Counter,1)=0; st(Counter,2)=ttrial; st(Counter,1)=i; st(Counter,3)=Output(Counter,1);
            Counter=Counter+1;
        end
        disp (['R0P0 for the ', int2str(i),' th session and ', int2str(j), 'th trial is done. ']); pause(0.1)
+       ttrial=ttrial+1;
    end
    
    
@@ -40,10 +42,11 @@ for i = 1 : size (different_sessions,2)  % i : different sessions
        TS=TrialLFP_R3P0_whole(j).LFP;
        for k = 1 : diff : size(TS,2) - (Window_Size -1) %k : Different time points
            Feature(Counter,:)=pmtm(TS(k : k + (Window_Size -1)), nw, f, fs);
-           Output(Counter,1)=1;
+           Output(Counter,1)=1; st(Counter,2)=ttrial; st(Counter,1)=i; st(Counter,3)=Output(Counter,1);
            Counter=Counter+1;
        end
        disp(['R3P0 for the ', int2str(i),' th session and ', int2str(j), 'th trial is done.']); pause(0.1)
+       ttrial=ttrial+1;
    end
    
    
@@ -53,10 +56,11 @@ for i = 1 : size (different_sessions,2)  % i : different sessions
        TS=TrialLFP_R0P3_whole(j).LFP;
        for k = 1 : diff : size(TS,2) - (Window_Size -1) %k : Different time points
            Feature(Counter,:)=pmtm(TS(k : k + (Window_Size -1)), nw, f, fs);
-           Output(Counter,1)=2;
+           Output(Counter,1)=2; st(Counter,2)=ttrial; st(Counter,1)=i; st(Counter,3)=Output(Counter,1);
            Counter=Counter+1;
        end
        disp(['R0P3 for the ', int2str(i),' th session and ', int2str(j), 'th trial is done.']); pause(0.1)
+       ttrial=ttrial+1;
    end
    
    
@@ -66,10 +70,11 @@ for i = 1 : size (different_sessions,2)  % i : different sessions
        TS=TrialLFP_R3P3_whole(j).LFP;
        for k = 1 : diff : size(TS,2) - (Window_Size -1) %k : Different time points
            Feature(Counter,:)=pmtm(TS(k : k + (Window_Size -1)), nw, f, fs);
-           Output(Counter,1)=3;
+           Output(Counter,1)=3; st(Counter,2)=ttrial; st(Counter,1)=i; st(Counter,3)=Output(Counter,1);
            Counter=Counter+1;
        end
        disp(['R3P3 for the ', int2str(i),' th session and ', int2str(j), 'th trial is done.']); pause(0.1)
+       ttrial=ttrial+1;
    end
    
    
@@ -79,3 +84,4 @@ end
 
 save('D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_Using_W_equal_to_1000\Feature.mat','Feature');
 save('D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_Using_W_equal_to_1000\Output.mat','Output');
+save('D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_Using_W_equal_to_1000\st.mat','st');
