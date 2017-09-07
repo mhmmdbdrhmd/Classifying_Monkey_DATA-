@@ -82,6 +82,6 @@ for i = 1 : size (different_sessions,2)  % i : different sessions
     
 end
 
-save(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_W',int2str(Window_Size), '_OL', int2str(diff),'_Postreward' ,'\Feature.mat'],'Feature');
-save(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_Using_W',int2str(Window_Size), '_OL', int2str(diff),'_Postreward' ,'\Output.mat'],'Output');
-save(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_Using_W',int2str(Window_Size), '_OL', int2str(diff),'_Postreward' ,'\st.mat'],'st');
+save(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_Postreward_Feature.mat'],'Feature');
+save(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD','\W',int2str(Window_Size), '_OL', int2str(diff),'_Postreward_Output.mat'],'Output');
+save(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD','\W',int2str(Window_Size), '_OL', int2str(diff),'_Postreward_st.mat'],'st');

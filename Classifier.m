@@ -1,8 +1,11 @@
 clear all; clc; close all; warning off;
 
-load D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_Using_W_equal_to_1000\Feature.mat;
-load D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_Using_W_equal_to_1000\Output.mat;
-load D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_Using_W_equal_to_1000\st.mat;
+Window_Size=200; %Sample
+diff = 5;
+
+load (['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_Postreward_Feature.mat']);
+load (['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_Postreward_Output.mat']);
+load (['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_Postreward_st.mat']);
 
 data= [Feature,Output];
 
@@ -28,7 +31,7 @@ for iipart = 1:partn.NumTestSets
     disp([int2str(iipart), ' th part finished']); pause(0.1)
 end
 
-%TITLE of each 23 classifier in cl, accuracytr, and accuracyte.
+%TITLE of each 22 classifier in cl, accuracytr, and accuracyte.
 tit=title_multi_classifier_all();
 
 %Finding out the highes accuracy in test:

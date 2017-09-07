@@ -1,12 +1,14 @@
 clear all; clc; close all; warning off;
 
+
+
 load D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_Using_W_equal_to_1000\Feature.mat;
 load D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_Using_W_equal_to_1000\Output.mat;
 load D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_Using_W_equal_to_1000\st.mat;
 
 data= [Feature,Output];
 
-clear Feature Feature2 Feature3 Feature4 Output Output2 Output3 Output4
+clear Feature Output
 
 totaltrial=max(st(:,2)); trial=1:totaltrial; 
 partn = cvpartition(trial,'k',4);
@@ -28,7 +30,7 @@ for iipart = 1:partn.NumTestSets
     disp([int2str(iipart), ' th part finished']); pause(0.1)
 end
 
-%TITLE of each 23 classifier in cl, accuracytr, and accuracyte.
+%TITLE of each 22 classifier in cl, accuracytr, and accuracyte.
 tit=title_multi_classifier_all();
 
 %Finding out the highes accuracy in test:
