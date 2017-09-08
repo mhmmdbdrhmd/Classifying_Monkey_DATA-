@@ -3,9 +3,9 @@ clear all; clc; close all; warning off;
 Window_Size=1000; %Sample
 diff = 50;
 
-load(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_whole_Feature.mat']);
-load(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_whole_Output.mat']);
-load(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_whole_st.mat']);
+load(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_Multi_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_whole_Feature.mat']);
+load(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_Multi_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_whole_Output.mat']);
+load(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_Multi_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_whole_st.mat']);
 
 data= [Feature,Output];
 
