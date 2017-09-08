@@ -12,7 +12,7 @@ data= [Feature,Output];
 clear Feature Output
 
 totaltrial=max(st(:,2)); trial=1:totaltrial; 
-partn = cvpartition(trial,'k',4);
+partn = cvpartition(trial,'k',6);
 
 for iipart = 1:partn.NumTestSets
     traintrialIndx = find(partn.training(iipart)==1);
@@ -37,4 +37,10 @@ tit=title_binary_classifier_all();
 %Finding out the highes accuracy in test:
 [a1,a2]=max(accuracyte(:)); [z1,z2]=ind2sub(size(accuracyte),a2);
 fprintf(['Highest accuracy on test set is ', num2str(a1*100) ,' percent.\n'...
-    'And it is for ', tit{z1}, ' classifier, on the ', int2str(z2), 'th partition.\n']);
+    'And it is for ', tit{z1}, ' classifier, on the ', int2str(z2), 'th partition.\n\n']);
+
+%Finding out the highes cross validated accuracy in test
+meanacc=mean(accuracyte,2);
+a3=max(meanacc); a4=find(meanacc==a3);
+fprintf(['Highest real accuracy on test is ', num2str(a3*100),' percent.\n'...
+    'And it is for',tit{a4},' classifier.\n']);

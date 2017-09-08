@@ -27,7 +27,7 @@ function [cl,computational_time]=binary_classifier_all(data)
 %
 %
 % BY: Mohammad Badri Ahmadi.
-clc; warning off;
+warning off;
 
 %Checking whether the labels are binary or not:
 if size(unique(data(:,end)))~=2
