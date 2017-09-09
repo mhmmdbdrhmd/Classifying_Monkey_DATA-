@@ -7,6 +7,8 @@ load(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_Multi_PSD' ,'\W',int
 load(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_Multi_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_whole_Output.mat']);
 load(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_Multi_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_whole_st.mat']);
 
+%Feature=frequency_extracter_from_PSD(Feature, f, 'A');
+
 data= [Feature,Output];
 
 clear Feature Output
