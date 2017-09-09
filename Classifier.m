@@ -34,13 +34,18 @@ end
 %TITLE of each 23 classifier in cl, accuracytr, and accuracyte.
 tit=title_binary_classifier_all();
 
+% Finding Highest Chance 
+chance1=st(:,3)==1; chance2=st(:,3)==2; hchance=max([sum(chance1),sum(chance2)])/size(st,1)*100;
+
 %Finding out the highes accuracy in test:
 [a1,a2]=max(accuracyte(:)); [z1,z2]=ind2sub(size(accuracyte),a2);
 fprintf(['Highest accuracy on test set is ', num2str(a1*100) ,' percent.\n'...
-    'And it is for ', tit{z1}, ' classifier, on the ', int2str(z2), 'th partition.\n\n']);
+    'And it is for ', tit{z1}, ' classifier, on the ', int2str(z2), 'th partition.\n'...
+    'The chance is = ', num2str(hchance),'\n\n']);
 
 %Finding out the highes cross validated accuracy in test
 meanacc=mean(accuracyte,2);
 a3=max(meanacc); a4=find(meanacc==a3);
 fprintf(['Highest real accuracy on test is ', num2str(a3*100),' percent.\n'...
-    'And it is for',tit{a4},' classifier.\n']);
+    'And it is for',tit{a4},' classifier.\n'...
+    'The chance is = ', num2str(hchance),'\n']);
