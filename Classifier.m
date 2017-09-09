@@ -2,10 +2,13 @@ clear all; clc; close all; warning off;
 
 Window_Size=500; %Sample
 diff = 499;
+f=1:0.5:200;
 
 load (['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_Postreward_Binary_Feature.mat']);
 load (['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_Postreward_Binary_Output.mat']);
 load (['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_Postreward_Binary_st.mat']);
+
+%Feature=frequency_extracter_from_PSD(Feature, f, 'A');
 
 data= [Feature,Output];
 
