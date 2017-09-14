@@ -1,15 +1,22 @@
 clear all; clc; close all; warning off;
 
-load D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_Using_W_equal_to_1000\Feature.mat;
-load D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_Using_W_equal_to_1000\Output.mat;
-load D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD_Time_Moving_Using_W_equal_to_1000\st.mat;
+Window_Size=1000; %Sample
+f=1:0.5:200; %Frequencies for the PSD
+starting_point=1;
+diff = 50;
+
+load(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_S',int2str(starting_point),'_whole_Multi_Feature.mat']);
+load(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_S',int2str(starting_point),'_whole_Multi_Output.mat']);
+load(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_S',int2str(starting_point),'_whole_Multi_st.mat']);
+
+%Feature=frequency_extracter_from_PSD(Feature, f, 'A');
 
 data= [Feature,Output];
 
-clear Feature Feature2 Feature3 Feature4 Output Output2 Output3 Output4
+clear Feature Output
 
 totaltrial=max(st(:,2)); trial=1:totaltrial; 
-partn = cvpartition(trial,'k',4);
+partn = cvpartition(trial,'k',12);
 
 for iipart = 1:partn.NumTestSets
     traintrialIndx = find(partn.training(iipart)==1);
@@ -21,17 +28,27 @@ for iipart = 1:partn.NumTestSets
     datate=data(TESTIndx,:);
     datate=datate(randperm(size(datate,1)),:);
     [cl,computational_time]=multi_classifier_all(datatr);
-    
-    
-    
     accuracyte(:,iipart)=accuracy_multi_classifier_all(datate,cl);
     disp([int2str(iipart), ' th part finished']); pause(0.1)
 end
 
-%TITLE of each 23 classifier in cl, accuracytr, and accuracyte.
+%TITLE of each 22 classifier in cl, accuracytr, and accuracyte.
 tit=title_multi_classifier_all();
+
+% Finding Highest Chance 
+chance1=st(:,3)==1; chance2=st(:,3)==2;
+chance3=st(:,3)==0; chance4=st(:,3)==3;
+hchance=max([sum(chance1),sum(chance2),sum(chance3),sum(chance4)])/size(st,1)*100;
 
 %Finding out the highes accuracy in test:
 [a1,a2]=max(accuracyte(:)); [z1,z2]=ind2sub(size(accuracyte),a2);
 fprintf(['Highest accuracy on test set is ', num2str(a1*100) ,' percent.\n'...
-    'And it is for ', tit{z1}, ' classifier, on the ', int2str(z2), 'th partition.\n']);
+    'And it is for ', tit{z1}, ' classifier, on the ', int2str(z2), 'th partition.\n'...
+    'The chance is = ', num2str(hchance),'\n\n']);
+
+%Finding out the highes cross validated accuracy in test
+meanacc=mean(accuracyte,2);
+a3=max(meanacc); a4=find(meanacc==a3);
+fprintf(['Highest real accuracy on test is ', num2str(a3*100),' percent.\n'...
+    'And it is for',tit{a4},' classifier.\n'...
+    'The chance is = ', num2str(hchance),'\n']);
