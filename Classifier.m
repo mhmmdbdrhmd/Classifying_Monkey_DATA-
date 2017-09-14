@@ -1,12 +1,13 @@
 clear all; clc; close all; warning off;
 
-Window_Size=500; %Sample
-diff = 499;
-f=1:0.5:200;
+Window_Size=200; %Sample
+f=1:0.5:200; %Frequencies for the PSD
+starting_point=1;
+diff = 10;
 
-load (['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_Postreward_Binary_Feature.mat']);
-load (['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_Postreward_Binary_Output.mat']);
-load (['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_Postreward_Binary_st.mat']);
+load (['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_S',int2str(starting_point),'_Postreward_Binary_Feature.mat']);
+load (['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_S',int2str(starting_point),'_Postreward_Binary_Output.mat']);
+load (['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_S',int2str(starting_point),'_Postreward_Binary_st.mat']);
 
 %Feature=frequency_extracter_from_PSD(Feature, f, 'A');
 
@@ -15,9 +16,9 @@ data= [Feature,Output];
 clear Feature Output
 
 totaltrial=max(st(:,2)); trial=1:totaltrial; 
-partn = cvpartition(trial,'k',6);
+partn = cvpartition(trial,'k',12);
 
-for iipart = 1:partn.NumTestSets
+parfor iipart = 1:partn.NumTestSets
     traintrialIndx = find(partn.training(iipart)==1);
     trainIndx=ismember(st(:,2),traintrialIndx);
     TESTtrialIndx = find(partn.test(iipart)==1);
@@ -27,9 +28,6 @@ for iipart = 1:partn.NumTestSets
     datate=data(TESTIndx,:);
     datate=datate(randperm(size(datate,1)),:);
     [cl,computational_time]=binary_classifier_all(datatr);
-    
-    
-    
     accuracyte(:,iipart)=accuracy_binary_classifier_all(datate,cl);
     disp([int2str(iipart), ' th part finished']); pause(0.1)
 end

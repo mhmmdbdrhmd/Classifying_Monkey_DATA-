@@ -6,17 +6,19 @@ ParentFileSection1="D:/DATA\Monkey/The_Other_Monkey_From_Junmo/Extracted_Spikes_
 ParentFileSection2="/Spikes_LFPs_PAC_SFC_STA/M1_PG_Manual_Extracted_Spikes_LFP_unit_num_1.mat";
 different_sessions={"20170315-1", "20170315-2","20170316-1","20170316-2","20170316-3","20170317-1","20170317-2","20170317-3","20170328" };
 
-%HP for PSD 
-Window_Size=500; %Sample
-nw=3.5; %Should check later
+Window_Size=200; %Sample
 f=1:0.5:200; %Frequencies for the PSD
+starting_point=1;
+diff = 10;
+
+%HP for PSD 
+nw=3.5; %Should check later
 fs=1000; %Sampling rate
 
 Counter = 1;
 TS=[];%Temproray Signal
 Feature=[];
 Output=[];
-diff = 499;
 ttrial=1;
 
 for i = 1 : size (different_sessions,2)  % i : different sessions
@@ -26,7 +28,7 @@ for i = 1 : size (different_sessions,2)  % i : different sessions
    for j = 1 : cnt_R3P0_trials  %j : Different Trials
        TS=[];
        TS=TrialLFP_R3P0_Postreward(j).LFP;
-       for k = 1 : diff : size(TS,2) - (Window_Size -1) %k : Different time points
+       for k = starting_point : diff : size(TS,2) - (Window_Size -1) %k : Different time points
            Feature(Counter,:)=pmtm(TS(k : k + (Window_Size -1)), nw, f, fs);
            Output(Counter,1)=1; st(Counter,2)=ttrial; st(Counter,1)=i; st(Counter,3)=Output(Counter,1);
            Counter=Counter+1;
@@ -40,7 +42,7 @@ for i = 1 : size (different_sessions,2)  % i : different sessions
    for j = 1 : cnt_R0P3_trials  %j : Different Trials
        TS=[];
        TS=TrialLFP_R0P3_Postreward(j).LFP;
-       for k = 1 : diff : size(TS,2) - (Window_Size -1) %k : Different time points
+       for k = starting_point : diff : size(TS,2) - (Window_Size -1) %k : Different time points
            Feature(Counter,:)=pmtm(TS(k : k + (Window_Size -1)), nw, f, fs);
            Output(Counter,1)=2; st(Counter,2)=ttrial; st(Counter,1)=i; st(Counter,3)=Output(Counter,1);
            Counter=Counter+1;
@@ -55,6 +57,6 @@ end
    
    
 
-save(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_Postreward_Binary_Feature.mat'],'Feature');
-save(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD','\W',int2str(Window_Size), '_OL', int2str(diff),'_Postreward_Binary_Output.mat'],'Output');
-save(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD','\W',int2str(Window_Size), '_OL', int2str(diff),'_Postreward_Binary_st.mat'],'st');
+save(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_S',int2str(starting_point),'_Postreward_Binary_Feature.mat'],'Feature');
+save(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD','\W',int2str(Window_Size), '_OL', int2str(diff),'_S',int2str(starting_point),'_Postreward_Binary_Output.mat'],'Output');
+save(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD','\W',int2str(Window_Size), '_OL', int2str(diff),'_S',int2str(starting_point),'_Postreward_Binary_st.mat'],'st');
