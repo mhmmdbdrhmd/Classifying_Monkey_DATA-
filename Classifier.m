@@ -1,13 +1,13 @@
 clear all; clc; close all; warning off;
 
-Window_Size=200; %Sample
+Window_Size=500; %Sample
 f=1:0.5:200; %Frequencies for the PSD
 starting_point=1;
-diff = 10;
+diff = 1000;
 
-load (['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_S',int2str(starting_point),'_Postreward_Binary_Feature.mat']);
-load (['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_S',int2str(starting_point),'_Postreward_Binary_Output.mat']);
-load (['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_S',int2str(starting_point),'_Postreward_Binary_st.mat']);
+load (['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_S',int2str(starting_point),'_Postcue_Binary_Feature.mat']);
+load (['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_S',int2str(starting_point),'_Postcue_Binary_Output.mat']);
+load (['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_S',int2str(starting_point),'_Postcue_Binary_st.mat']);
 
 %Feature=frequency_extracter_from_PSD(Feature, f, 'A');
 
