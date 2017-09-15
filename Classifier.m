@@ -5,9 +5,9 @@ f=1:0.5:200; %Frequencies for the PSD
 starting_point=1;
 diff = 50;
 
-load(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_S',int2str(starting_point),'_whole_Multi_Feature.mat']);
-load(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_S',int2str(starting_point),'_whole_Multi_Output.mat']);
-load(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_S',int2str(starting_point),'_whole_Multi_st.mat']);
+load(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_S',int2str(starting_point),'_whole_Binary_Feature.mat']);
+load(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_S',int2str(starting_point),'_whole_Binary_Output.mat']);
+load(['D:\DATA\Monkey\The_Other_Monkey_From_Junmo\Extracted_PSD' ,'\W',int2str(Window_Size), '_OL', int2str(diff),'_S',int2str(starting_point),'_whole_Binary_st.mat']);
 
 %Feature=frequency_extracter_from_PSD(Feature, f, 'A');
 
@@ -27,18 +27,17 @@ parfor iipart = 1:partn.NumTestSets
     datatr=datatr(randperm(size(datatr,1)),:);
     datate=data(TESTIndx,:);
     datate=datate(randperm(size(datate,1)),:);
-    [cl,computational_time]=multi_classifier_all(datatr);
-    accuracyte(:,iipart)=accuracy_multi_classifier_all(datate,cl);
+    [cl,computational_time]=binary_classifier_all(datatr);
+    accuracyte(:,iipart)=accuracy_binary_classifier_all(datate,cl);
     disp([int2str(iipart), ' th part finished']); pause(0.1)
 end
 
-%TITLE of each 22 classifier in cl, accuracytr, and accuracyte.
-tit=title_multi_classifier_all();
+%TITLE of each 23 classifier in cl, accuracytr, and accuracyte.
+tit=title_binary_classifier_all();
 
 % Finding Highest Chance 
 chance1=st(:,3)==1; chance2=st(:,3)==2;
-chance3=st(:,3)==0; chance4=st(:,3)==3;
-hchance=max([sum(chance1),sum(chance2),sum(chance3),sum(chance4)])/size(st,1)*100;
+hchance=max([sum(chance1),sum(chance2)])/size(st,1)*100;
 
 %Finding out the highes accuracy in test:
 [a1,a2]=max(accuracyte(:)); [z1,z2]=ind2sub(size(accuracyte),a2);
