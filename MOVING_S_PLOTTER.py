@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 a=100*sio.loadmat('D:\MOVING_SP.mat')['accuracyte']
-x=range(10,501,10)
+x=range(1,492,10)
 
 
 avr=np.mean(a,2)
@@ -16,12 +16,17 @@ title=['Complex Tree',	'Medium Tree',	'Simple Tree',	'Linear Discriminant',	'Qua
 chance=54.15
 
 tempa=a[:,j,:]
-
+xx=range(1,501,50)
 x=range(1,492,10)
 
 fig, ax = plt.subplots()
 
 ax.plot(x,np.mean(tempa,1),label='Mean of the best classifier')
+plt.xlim((np.min(x),np.max(x)))
+xxticks=[1,50,100,150,200,250,300,350,400,450,491]
+ax.set_xticks(xxticks)
+ax.set_xticklabels(xxticks)
+
 
 varoftempa=np.std(tempa,1)
 shadedarea1=np.mean(tempa,1)+varoftempa
@@ -33,11 +38,9 @@ llimity=np.floor(np.min(np.array([np.min(shadedarea2),chance])) - 2)
 hlimity=np.ceil(np.max(np.array([np.max(shadedarea1),maxmax])) + 2)
 plt.ylim( (llimity, hlimity) )
 
-foryticks=list(range(int(llimity),int(hlimity),2))
-[foryticks.append(i) for i in [float("%.2f" %(maxmax)),float("%.2f" %(chance))]]
 
-ax.set_yticks(foryticks)
-ax.set_yticklabels(foryticks)
+ax.set_yticks(range(int(llimity),int(hlimity),2))
+ax.set_yticklabels(range(int(llimity),int(hlimity),2))
 
 plt.xlabel('Start Point (ms)')
 plt.ylabel('Accuracy (%)')
@@ -46,6 +49,13 @@ plt.ylabel('Accuracy (%)')
 
 ax.fill_between(x,shadedarea1,shadedarea2, label='STD',alpha=0.15)
 ax.legend()
+
+
+ax3 = ax.twinx()
+plt.ylim( (llimity, hlimity) )
+ax3.set_yticks([float("%.2f" %(maxmax)),float("%.2f" %(chance))])
+ax3.set_yticklabels([float("%.2f" %(maxmax)),float("%.2f" %(chance))])
+ax3.set_ylabel('Accuracy (%)',rotation=-90)
 
 plt.show()
 
