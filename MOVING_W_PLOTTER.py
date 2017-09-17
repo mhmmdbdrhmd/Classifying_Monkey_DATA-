@@ -20,19 +20,24 @@ x=range(10,501,10)
 
 fig, ax = plt.subplots()
 
-ax.plot(x,np.mean(tempa,1),label='Mean of the best classifier ('+(title[j])+')')
-#plt.ylim( (0, 100) )
+ax.plot(x,np.mean(tempa,1),label='Mean of the best classifier')
+
 varoftempa=np.std(tempa,1)
 shadedarea1=np.mean(tempa,1)+varoftempa
 shadedarea2=np.mean(tempa,1)-varoftempa
-ax.axhline(maxmax,color='g',linewidth=2,label='Highest mean accuracy')
+ax.axhline(maxmax,color='g',linewidth=2,label='Highest mean accuracy ('+(title[j])+')')
 ax.axhline(chance,color='r',linewidth=2,label='Chance')
 
 llimity=np.floor(np.min(np.array([np.min(shadedarea2),chance])) - 2)
 hlimity=np.ceil(np.max(np.array([np.max(shadedarea1),maxmax])) + 2)
 plt.ylim( (llimity, hlimity) )
-ax.set_yticks(range(int(llimity),int(hlimity),2))
-ax.set_yticklabels(range(int(llimity),int(hlimity),2))
+
+foryticks=list(range(int(llimity),int(hlimity),2))
+[foryticks.append(i) for i in [float("%.2f" %(maxmax)),float("%.2f" %(chance))]]
+
+ax.set_yticks(foryticks)
+ax.set_yticklabels(foryticks)
+
 plt.xlabel('End Point (ms)')
 plt.ylabel('Accuracy (%)')
 

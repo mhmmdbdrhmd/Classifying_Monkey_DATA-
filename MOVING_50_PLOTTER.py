@@ -1,10 +1,10 @@
+
 import scipy.io as sio
 import matplotlib.pyplot as plt
 import numpy as np
 
-a=100*sio.loadmat('D:\MOVING_SP.mat')['accuracyte']
-x=range(10,501,10)
 
+a=100*sio.loadmat('D:\moving_50.mat')['accuracyte']
 
 avr=np.mean(a,2)
 i,j=np.unravel_index(avr.argmax(),avr.shape)
@@ -17,11 +17,16 @@ chance=54.15
 
 tempa=a[:,j,:]
 
-x=range(1,492,10)
+x1=range(1,452,10)
+X2=range(51,501,10)
 
 fig, ax = plt.subplots()
+ax.set_title("End Point (ms)",fontsize=12,y=1.02)
+plt.xlabel('Start Point (ms)')
+plt.ylabel('Accuracy (%)')
+ax2 = ax.twiny()
 
-ax.plot(x,np.mean(tempa,1),label='Mean of the best classifier')
+ax.plot(x1,np.mean(tempa,1),label='Mean of the best classifier')
 
 varoftempa=np.std(tempa,1)
 shadedarea1=np.mean(tempa,1)+varoftempa
@@ -39,13 +44,14 @@ foryticks=list(range(int(llimity),int(hlimity),2))
 ax.set_yticks(foryticks)
 ax.set_yticklabels(foryticks)
 
-plt.xlabel('Start Point (ms)')
-plt.ylabel('Accuracy (%)')
 
 
 
-ax.fill_between(x,shadedarea1,shadedarea2, label='STD',alpha=0.15)
+
+ax.fill_between(x1,shadedarea1,shadedarea2, label='STD',alpha=0.15)
 ax.legend()
+
+ax2.plot(X2, maxmax*np.ones(45))
 
 plt.show()
 

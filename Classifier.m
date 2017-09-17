@@ -2,8 +2,8 @@ clear all; clc; close all; warning off;
 
 File=1;
 
-for SP = 1 : 10 : 450
-    for Window = 50
+for SP = 1 : 10 : 451
+    for Window = 49
 
         Window_Size=Window; %Sample
         f=1:0.5:200; %Frequencies for the PSD
