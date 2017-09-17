@@ -21,8 +21,11 @@ x=range(10,501,10)
 fig, ax = plt.subplots()
 
 ax.plot(x,np.mean(tempa,1),label='Mean of the best classifier')
+imaxmax=np.mean(tempa,1).argmax()
+tmaxmax=x[imaxmax]
+
 plt.xlim((np.min(x),np.max(x)))
-xxticks=[10,50,100,150,200,250,300,350,400,450,500]
+xxticks=[10,50,100,150,200,250,300,350,400,450,500,tmaxmax]
 ax.set_xticks(xxticks)
 ax.set_xticklabels(xxticks)
 
@@ -33,6 +36,7 @@ shadedarea1=np.mean(tempa,1)+varoftempa
 shadedarea2=np.mean(tempa,1)-varoftempa
 ax.axhline(maxmax,color='g',linewidth=2,label='Highest mean accuracy ('+(title[j])+')')
 ax.axhline(chance,color='r',linewidth=2,label='Chance')
+ax.axvline(tmaxmax,color='c',linewidth=0.5)
 
 llimity=np.floor(np.min(np.array([np.min(shadedarea2),chance])) - 2)
 hlimity=np.ceil(np.max(np.array([np.max(shadedarea1),maxmax])) + 2)
