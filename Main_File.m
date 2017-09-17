@@ -6,8 +6,8 @@ ParentFileSection1="D:/DATA\Monkey/The_Other_Monkey_From_Junmo/Extracted_Spikes_
 ParentFileSection2="/Spikes_LFPs_PAC_SFC_STA/M1_PG_Manual_Extracted_Spikes_LFP_unit_num_1.mat";
 different_sessions={"20170315-1", "20170315-2","20170316-1","20170316-2","20170316-3","20170317-1","20170317-2","20170317-3","20170328" };
 
-for SP = 1 : 10 : 491
-    for Window = 501-SP
+for SP = 1 : 10 : 450
+    for Window = 50
 
         
         Window_Size=Window; %Sample
