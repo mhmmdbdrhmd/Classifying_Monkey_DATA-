@@ -34,7 +34,7 @@ tmaxmax=x1[imaxmax]
 
 
 plt.xlim((np.min(x1),np.max(x1)))
-xxticks=[1,50,100,150,200,250,300,350,400,451,tmaxmax]
+xxticks=[1,51,101,151,201,251,301,351,401,451,tmaxmax]
 ax.set_xticks(xxticks)
 ax.set_xticklabels(xxticks)
 
